@@ -7,12 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mongodb-learn" />
+        <module name="mq-learn" />
         <module name="schedule-learn" />
+        <module name="test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="mongodb-learn" target="1.5" />
+      <module name="mq-learn" target="1.5" />
       <module name="schedule-learn" target="1.5" />
+      <module name="test" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -3,12 +3,14 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/mongodblearn/pom.xml" />
-        <option value="$PROJECT_DIR$/schedulelearn/pom.xml" />
+        <option value="$PROJECT_DIR$/mongodb-learn/pom.xml" />
+        <option value="$PROJECT_DIR$/schedule-learn/pom.xml" />
+        <option value="$PROJECT_DIR$/test/pom.xml" />
+        <option value="$PROJECT_DIR$/mq-learn/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

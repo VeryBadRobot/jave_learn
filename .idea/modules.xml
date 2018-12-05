@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/mongodb-learn/mongodb-learn.iml" filepath="$PROJECT_DIR$/mongodb-learn/mongodb-learn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mq-learn/mq-learn.iml" filepath="$PROJECT_DIR$/mq-learn/mq-learn.iml" />
       <module fileurl="file://$PROJECT_DIR$/schedule-learn/schedule-learn.iml" filepath="$PROJECT_DIR$/schedule-learn/schedule-learn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
     </modules>
   </component>
 </project>

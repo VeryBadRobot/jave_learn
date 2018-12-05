@@ -1,10 +1,10 @@
-package wangjin.timer.cancel;
+package wangjin.timer.cancel_01;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimerTask;
 
-public class MyTimerTask extends TimerTask {
+public class MyTimerTask_01 extends TimerTask {
 
 	/**
 	 * 任务名
@@ -15,7 +15,7 @@ public class MyTimerTask extends TimerTask {
 	 */
 	private Integer count = 0;
 
-	public MyTimerTask(String name) {
+	public MyTimerTask_01(String name) {
 		this.name = name;
 	}
 

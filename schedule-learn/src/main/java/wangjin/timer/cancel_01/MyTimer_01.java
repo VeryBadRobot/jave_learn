@@ -1,17 +1,17 @@
-package wangjin.timer.cancel;
+package wangjin.timer.cancel_01;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Timer;
 
-public class MyTimer {
+public class MyTimer_01 {
 
 
 	public static void main(String[] args) {
 		//1.创建一个Timer实例
 		Timer timer = new Timer();
 		//2.创建一个TimerTask的实例
-		MyTimerTask myTimerTask = new MyTimerTask("NO.1");
+		MyTimerTask_01 myTimerTask = new MyTimerTask_01("NO.1");
 		//3.通过Timer定时定频率调用MyTimerTask的业务逻辑
 
 
