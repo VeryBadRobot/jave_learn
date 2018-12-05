@@ -1,4 +1,4 @@
-package wangjin.timer;
+package cn.wangjin.timer;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

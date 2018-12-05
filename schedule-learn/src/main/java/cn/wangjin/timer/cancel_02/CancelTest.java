@@ -1,4 +1,4 @@
-package wangjin.timer.cancel_02;
+package cn.wangjin.timer.cancel_02;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

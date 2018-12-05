@@ -1,17 +1,14 @@
-package wangjin.timer.cancel_02;
+package cn.wangjin.timer;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimerTask;
 
-public class MyTimerTask_02 extends TimerTask {
+public class MyTimerTask extends TimerTask {
 
-	/**
-	 * 任务名
-	 */
 	private String name;
 
-	public MyTimerTask_02(String name) {
+	public MyTimerTask(String name) {
 		this.name = name;
 	}
 
@@ -36,6 +33,5 @@ public class MyTimerTask_02 extends TimerTask {
 		System.out.println("current time is : " + sf.format(calendar.getTime()));
 		//输出当前任务名
 		System.out.println("current task name is : " + name);
-
 	}
 }
