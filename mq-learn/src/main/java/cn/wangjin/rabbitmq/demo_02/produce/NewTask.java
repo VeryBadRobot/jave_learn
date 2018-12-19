@@ -1,9 +1,6 @@
 package cn.wangjin.rabbitmq.demo_02.produce;
 
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.MessageProperties;
+import com.rabbitmq.client.*;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -20,7 +17,7 @@ public class NewTask {
 
 		Channel channel = connection.createChannel();
 
-		channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
+		 AMQP.Queue.DeclareOk ok = channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
 
 		//分发消息
 		for (int i = 0; i < 10; i++) {
@@ -29,6 +26,9 @@ public class NewTask {
 			System.out.println("NewTask send '" + message + "'");
 		}
 
+
+		System.out.println(ok.getConsumerCount());
+		System.out.println(ok.getMessageCount());
 		channel.close();
 		connection.close();
 
