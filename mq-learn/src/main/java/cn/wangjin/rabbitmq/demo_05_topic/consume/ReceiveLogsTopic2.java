@@ -31,7 +31,7 @@ public class ReceiveLogsTopic2 {
 		String[] routingKeys = new String[]{"*.*.rabbit", "lazy.#"};
 		//绑定路由关键字
 		for (String routingKey : routingKeys) {
-			channel.queueBind(queueName, EXCHANGE_NAME, routingKey);
+			//channel.queueBind(queueName, EXCHANGE_NAME, routingKey);
 			System.out.println("ReceiveLogsTopic2 exchange: " + EXCHANGE_NAME + ", queue: " + queueName + ", BindRoutingKey: " + routingKey);
 		}
 

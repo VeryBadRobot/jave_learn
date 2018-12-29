@@ -24,6 +24,9 @@ public class TopicSend {
 			channel = connection.createChannel();
 			//声明一个匹配模式的交换机
 			channel.exchangeDeclare(EXCHANGE_NAME, "topic");
+
+
+
 			//待发送的消息
 			String[] routingKeys = new String[]
 					{
