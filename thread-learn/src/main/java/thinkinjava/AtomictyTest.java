@@ -7,7 +7,7 @@ public class AtomictyTest implements Runnable {
 
 	private volatile int i = 0;
 
-	public synchronized int getValue() {
+	public int getValue() {
 		return i;
 	}
 

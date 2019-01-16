@@ -1,22 +1,38 @@
 package thinkinjava;
 
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class Test {
+public class Test implements Runnable {
+
+	private volatile int i = 0;
 
 
-	public static void main(String[] args) throws InterruptedException {
-		ThreadReuse threadReuse = new ThreadReuse();
-
-		threadReuse.submit(()-> System.out.println("First runnable"));
-		threadReuse.submit(()->{
-			System.out.println("Second callable");
-			return "";
-		});
-
-		threadReuse.start();
-		TimeUnit.SECONDS.sleep(5);
-
-		threadReuse.submit(()-> System.out.println("Third runnable"));
+	private int getValue() {
+		return i;
 	}
+
+
+	private synchronized void evenIncrement() {
+		i++;
+//		i++;
+	}
+
+	@Override
+	public void run() {
+		while (true)
+			evenIncrement();
+	}
+
+	public static void main(String[] args) {
+		ExecutorService exec = Executors.newCachedThreadPool();
+		Test test = new Test();
+
+		Boolean err = null;
+
+	}
+
+
+
+
 }
