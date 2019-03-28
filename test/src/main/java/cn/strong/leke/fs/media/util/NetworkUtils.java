@@ -1,28 +1,17 @@
-package test;
+package cn.strong.leke.fs.media.util;
+
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.util.*;
-
-public class Test {
+import java.util.Enumeration;
 
 
-	public static int count = 10000;
+/**
+ * 网络工具类，获取IP地址
+ */
+public class NetworkUtils {
 
-	public static void main(String[] args) {
-
-		Integer t =256;
-
-		System.out.println(t==256);
-		Set<Integer> documentTypes = new HashSet<>();
-		documentTypes.add(1);
-		documentTypes.add(2);
-		documentTypes.add(3);
-		System.out.println(documentTypes.contains(new Integer(1)));
-	}
-
-
-
+	private static String ipaddress;
 
 	private static String getIpAddress0() {
 		try {
@@ -35,15 +24,32 @@ public class Test {
 					if (address != null && address instanceof Inet4Address) {
 						String ipaddress = address.getHostAddress();
 						if (ipaddress != null && !ipaddress.startsWith("127")) {
-							System.out.println(ipaddress);
+							return ipaddress;
 						}
 					}
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new TestException();
 		}
 		return "unknown";
+	}
+
+	/**
+	 * 获取本机IP地址
+	 *
+	 * @return
+	 */
+	public static String getIpAddress() {
+		if (ipaddress == null) {
+			synchronized (NetworkUtils.class) {
+				ipaddress = getIpAddress0();
+			}
+		}
+		return ipaddress;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(getIpAddress());
 	}
 }
