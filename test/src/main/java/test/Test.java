@@ -2,6 +2,8 @@ package test;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Test {
@@ -11,17 +13,41 @@ public class Test {
 
 	public static void main(String[] args) {
 
-		Integer t =256;
+//		Integer t =256;
+//
+//		System.out.println(t==256);
+//		Set<Integer> documentTypes = new HashSet<>();
+//		documentTypes.add(1);
+//		documentTypes.add(2);
+//		documentTypes.add(3);
+//		System.out.println(documentTypes.contains(new Integer(1)));
+	//	test();
 
-		System.out.println(t==256);
-		Set<Integer> documentTypes = new HashSet<>();
-		documentTypes.add(1);
-		documentTypes.add(2);
-		documentTypes.add(3);
-		System.out.println(documentTypes.contains(new Integer(1)));
+		List<Integer> integers = new ArrayList<>();
+		integers.add(null);
+		integers.add(null);
+
+		for (Integer i : integers)
+		{
+			System.out.println(i);
+		}
+
 	}
 
-
+        static  void test()
+        {
+	        long start = System.currentTimeMillis();
+	        String patternStr = "yyyyMMddHHmmss";
+	        DateTimeFormatter pattern = DateTimeFormatter.ofPattern(patternStr);
+	        LocalDateTime date = LocalDateTime.now();
+	        String result = "";
+	        for (int i = 0; i < 10 * 1000 * 1000; i++) {
+		        result = date.format(pattern);
+	        }
+	        long end = System.currentTimeMillis();
+	        System.out.println(end-start);
+	        System.out.println(result);
+        }
 
 
 	private static String getIpAddress0() {
