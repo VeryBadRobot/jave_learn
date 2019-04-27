@@ -3,29 +3,58 @@ package thinkinjava.corp;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 class Car {
+	//是否上蜡了
 	private boolean waxOn = false;
+	private Lock lock = new ReentrantLock();
+	private Condition condition = lock.newCondition();
 
-	public synchronized void waxed() {
-		waxOn = true; // Ready to buff
-		notifyAll();
+
+	public void waxed() {
+		lock.lock();
+		try {
+			waxOn = true; // Ready to buff
+			condition.signalAll();
+		} finally {
+			lock.unlock();
+		}
+
 	}
 
-	public synchronized void buffed() {
-		waxOn = false; // Ready for another coat of wax
-		notifyAll();
-	}
-
-	public synchronized void waitForWaxing() throws InterruptedException {
-		while (waxOn == false) {
-			wait();
+	public void buffed() {
+		lock.lock();
+		try {
+			waxOn = false; // Ready for another coat of wax
+			condition.signalAll();
+		} finally {
+			lock.unlock();
 		}
 	}
 
-	public synchronized void waitForBuffing() throws InterruptedException {
-		while (waxOn = true) {
-			wait();
+	public void waitForWaxing() throws InterruptedException {
+		lock.lock();
+		try {
+			while (waxOn == false) {
+				condition.await();
+			}
+		} finally {
+			lock.unlock();
+		}
+
+	}
+
+	public void waitForBuffing() throws InterruptedException {
+		lock.lock();
+		try {
+			while (waxOn == true) {
+				condition.await();
+			}
+		} finally {
+			lock.unlock();
 		}
 	}
 }
@@ -40,8 +69,9 @@ class WaxOn implements Runnable {
 	public void run() {
 		try {
 			while (!Thread.interrupted()) {
+
 				System.out.println("Wax on!");
-				TimeUnit.MILLISECONDS.sleep(200);
+				TimeUnit.MILLISECONDS.sleep(500);
 				car.waxed();
 				car.waitForBuffing();
 			}
