@@ -19,13 +19,13 @@ public class Customer {
 		//创建连接工厂
 		ConnectionFactory factory = new ConnectionFactory();
 		//设置rabbitmq server 地址
-		factory.setHost("localhost");
+		factory.setHost("192.168.20.19");
 		//设置用户名
-//		factory.setUsername();
+		factory.setUsername("leke");
 		//设置密码
-//		factory.setPassword();
+		factory.setPassword("leke@@!");
 		//设置端口号
-//		factory.setPort();
+		factory.setPort(5672);
 
 		//创建一个连接
 		Connection connection = factory.newConnection();

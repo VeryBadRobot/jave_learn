@@ -117,7 +117,6 @@ public class InsertTest {
 						InsertDb db = new InsertDb();
 						db.initConn();
 						db.insert();
-
 					} catch (ClassNotFoundException e) {
 						e.printStackTrace();
 					} catch (SQLException e) {

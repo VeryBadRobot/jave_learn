@@ -52,6 +52,7 @@ public class PrepareDocumentService {
 		readers.put("ppt", source -> {
 			try (InputStream input = source.getInputStream()) {
 				try (HSLFSlideShowImpl hslfSlideShow = new HSLFSlideShowImpl(input); HSLFSlideShow ppt = new HSLFSlideShow(hslfSlideShow)) {
+					//good
 					System.out.println("ppt HSLFSlide applicationName : " + hslfSlideShow.getSummaryInformation().getApplicationName());
 					System.out.println("ppt HSLFSlide pageCount : " + ppt.getSlides().size());
 					return ppt.getSlides().size();
@@ -72,6 +73,7 @@ public class PrepareDocumentService {
 		readers.put("pptx", source -> {
 			try (InputStream input = source.getInputStream()) {
 				try (XMLSlideShow pptx = new XMLSlideShow(input)) {
+					//good
 					System.out.println("pptX XMLSlide applicationName : " + pptx.getProperties().getExtendedProperties().getApplication());
 					System.out.println("pptX XMLSlide pageCount : " + pptx.getSlides().size());
 					return pptx.getSlides().size();
@@ -92,6 +94,7 @@ public class PrepareDocumentService {
 		readers.put("doc", source -> {
 			try (InputStream input = source.getInputStream()) {
 				try (WordExtractor doc = new WordExtractor(input)) {
+					System.out.println("doc wordExtractor applicationName : "+ doc.getSummaryInformation().getApplicationName());
 					return doc.getSummaryInformation().getPageCount();
 				} catch (OfficeXmlFileException e) {
 					logger.info("file ext failed.");
@@ -100,6 +103,7 @@ public class PrepareDocumentService {
 			// compat
 			try (InputStream input = source.getInputStream()) {
 				try (XWPFDocument docx = new XWPFDocument(input)) {
+					System.out.println("doc XWPF applicationName : "+docx.getProperties().getExtendedProperties().getUnderlyingProperties().getApplication());
 					return docx.getProperties().getExtendedProperties().getUnderlyingProperties().getPages();
 				}
 			}
@@ -109,8 +113,9 @@ public class PrepareDocumentService {
 			try (InputStream input = source.getInputStream()) {
 				try (XWPFDocument docx = new XWPFDocument(input)) {
 					XWPFWordExtractor extractor = new XWPFWordExtractor(docx);
-					System.out.println(extractor.getExtendedProperties().getUnderlyingProperties().getApplication());
-					//docx.getBuiltInDocumentProperties().getNameOfApplication();
+					System.out.println("docx xwp 1 application : " +docx.getProperties().getExtendedProperties().getApplication());
+					System.out.println("docx xwp 2 application : " + docx.getProperties().getExtendedProperties().getUnderlyingProperties().getApplication());
+
 					return extractor.getExtendedProperties().getPages();
 					//return docx.getProperties().getExtendedProperties().getUnderlyingProperties().getPages();
 				} catch (OLE2NotOfficeXmlFileException e) {
@@ -130,6 +135,7 @@ public class PrepareDocumentService {
 			try (InputStream input = source.getInputStream()) {
 				try (PDDocument pdf = PDDocument.load(input)) {
 					System.out.println("pdf pageCount : " + pdf.getNumberOfPages());
+
 					return pdf.getNumberOfPages();
 				}
 			}
@@ -137,6 +143,7 @@ public class PrepareDocumentService {
 		// xls
 		readers.put("xls", source -> {
 			HSSFWorkbook hs = new HSSFWorkbook(source.getInputStream());
+			//good
 			System.out.println("xls HSSFWorkbook applicationName : " + hs.getSummaryInformation().getApplicationName());
 			System.out.println("xls HSSFWorkbook pageCount : " + hs.getNumberOfSheets());
 			return hs.getNumberOfSheets();
@@ -153,6 +160,7 @@ public class PrepareDocumentService {
 				return hs.getNumberOfSheets();
 			} catch (Exception e) {
 				XSSFWorkbook xs = new XSSFWorkbook(source.getInputStream());
+				//good
 				System.out.println("xlsx XSSFWorkbook applicationName : " + xs.getProperties().getExtendedProperties().getApplication());
 				System.out.println("xlsx XSSFWorkbook pageCount : " + xs.getNumberOfSheets());
 				return xs.getNumberOfSheets();
@@ -186,13 +194,15 @@ public class PrepareDocumentService {
 
 	public static void main(String[] args) throws InterruptedException, IOException, TikaException, SAXException {
 		String path = "C:\\Users\\123\\Documents\\Tencent Files\\516671256\\FileRecv";
-		String name1 = path + "\\" + "2019届院校前期联系.xlsx";
-		String name2 = path + "\\" + "施强CICD.pptx";
+		String name1 = path + "\\" + "office-file.xlsx";
+		String name2 = path + "\\" + "wps-file.xlsx";
+
+		String name6 = path + "\\" + "施强CICD.pptx";
 		//docx读取错误
 		String name3 = path + "\\" + "Harry PotterWPS.docx";
 		String name4 = path + "\\" + "operatingsystem.pdf";
 		String name5 = path + "\\" + "人教版生物必修1： 全册总复习课件 (1)(共546张PPT).pptx";
-		String name6 = path + "\\" + "资源抓取后台接口错误提示.xlsx";
+
 		String name7 = path + "\\" + "单词学习之词根mand.ppt";
 		String name8 = path + "\\" + "单词学习之词根mand-wps.pptx";
 		String name9 = path + "\\" + "5.18-二大区-合作学校全网跟进表.xlsx";
@@ -200,9 +210,18 @@ public class PrepareDocumentService {
 		String name11 = path + "\\" + "赵州桥.pptx";
 		String name12 = path + "\\" + "1c.docx";
 		String name13 = path + "\\" + "中国现有化学物质名录2013年版(2).pdf";
+		String name14 = path+"\\"+"OFFICE-file.ppt";
+		String name15 = path+"\\"+"WPS-file.ppt";
+		String name16 = path+"\\"+"none.ppt";
+		String name17 = path+"\\"+"office-file.pptx";
+		String name18 = path+"\\"+"office-file.doc";
+		String name19 = path+"\\"+"wps-file.doc";
+		String name20 = path+"\\"+"none-file.xls";
+		String name21 = path+"\\"+"wps-file.xls";
+		String name22 = path+"\\"+"office-file.xls";
 
 
-		FileSource fileSource = new FileSystemSource(name12);
+		FileSource fileSource = new FileSystemSource(name4);
 		Parser parser = new OOXMLParser();
 		((OOXMLParser) parser).setUseSAXDocxExtractor(true);
 		((OOXMLParser) parser).setIncludeDeletedContent(true);
@@ -210,18 +229,18 @@ public class PrepareDocumentService {
 
 
 
+//
+//		ContentHandler handler = new BodyContentHandler();
+//
+//		Metadata metadata = new Metadata();
+//		ParseContext context = new ParseContext();
+//
+//		parser.parse(fileSource.getInputStream(),handler,metadata,context);
 
-		ContentHandler handler = new BodyContentHandler();
-
-		Metadata metadata = new Metadata();
-		ParseContext context = new ParseContext();
-
-		parser.parse(fileSource.getInputStream(),handler,metadata,context);
-
-		System.out.println(metadata);
+		//System.out.println(metadata);
 
 		try {
-			//execute(fileSource);
+			execute(fileSource);
 		} catch (Exception e) {
 			System.out.println(e);
 		}

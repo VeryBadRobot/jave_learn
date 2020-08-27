@@ -40,7 +40,6 @@ public class InsertTest2 {
 			}
 		}
 
-
 		public String randomStr(int size) {
 			//定义一个空字符串
 			String result = "";
@@ -55,7 +54,6 @@ public class InsertTest2 {
 			//输出字符串
 			return result;
 		}
-
 
 		public void insert() {
 			// 开时时间
@@ -102,9 +100,7 @@ public class InsertTest2 {
 			// 耗时
 			System.out.println("cast : " + (end - begin) / 1000f + " ms");
 		}
-
 	}
-
 
 	public static void main(String[] args) throws SQLException, ClassNotFoundException, InterruptedException {
 		long s = System.currentTimeMillis();
@@ -117,7 +113,6 @@ public class InsertTest2 {
 						InsertDb db = new InsertDb();
 						db.initConn();
 						db.insert();
-
 					} catch (ClassNotFoundException e) {
 						e.printStackTrace();
 					} catch (SQLException e) {
@@ -135,5 +130,4 @@ public class InsertTest2 {
 		long e = System.currentTimeMillis();
 		System.out.println("total耗时" + (e - s) / 1000f + "s");
 	}
-
 }
