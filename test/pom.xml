@@ -25,6 +25,7 @@
         <dependency>
             <groupId>cn.strong</groupId>
             <artifactId>fastdfs-client</artifactId>
+            <version>3.0.0-dev_for_log_v20200426</version>
         </dependency>
         <dependency>
             <groupId>cn.strong.leke</groupId>
@@ -62,9 +63,33 @@
             <artifactId>pdfbox</artifactId>
             <version>1.8.13</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.docx4j</groupId>
+            <artifactId>docx4j-JAXB-Internal</artifactId>
+            <version>8.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>ooxml-schemas</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <!-- 图片缩略处理 -->
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>0.4.8</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-jpeg</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-tiff</artifactId>
+            <version>3.3.2</version>
+        </dependency>
     </dependencies>
-
 
 
 </project>
